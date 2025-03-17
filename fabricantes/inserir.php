@@ -1,3 +1,10 @@
+<?php
+/* Verificando se o formulário foi acionado */
+if (isset ($_POST['inserir'])) {
+    echo "Inserindo Fabricante";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
