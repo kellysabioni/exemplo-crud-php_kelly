@@ -9,13 +9,13 @@ function listarFabricantes(PDO $conexao):array{
 
     try {
         /* Preparando o comando SQL ANTES de executar no servidor e guardando em memória (variável consulta ou query) */
-        $contulta = $conexao->prepare($sql);
+        $consulta = $conexao->prepare($sql);
         
         /* Executando o comando no banco de dados */
-        $contulta->execute();
+        $consulta->execute();
     
         /* Busca/Retorna todos os dados provenientes da execução da consulta e os transforma em um array associativo */
-        return $contulta->fetchAll(PDO::FETCH_ASSOC);
+        return $consulta->fetchAll(PDO::FETCH_ASSOC);
         
     } catch (Exception $erro) {
         die("Erro: ".$erro->getMessage());
@@ -41,4 +41,36 @@ function inserirFabricante(PDO $conexao, string $nomeDoFabricante):void{
     } catch (Exception $erro) {
         die("Erro ao inserir: ".$erro->getMessage());
     }
+}
+
+//listarUmFabricante: usada pela página fabricantes/atualizar.php
+function listarUmFabricante (PDO $conexao, int $idFabricante):array{
+$sql = "SELECT * FROM fabricantes where id = :id";
+
+try {
+    $consulta = $conexao->prepare($sql);
+    $consulta->bindValue(":id", $idFabricante, PDO::PARAM_INT);
+    $consulta->execute();
+
+    return $consulta->fetch(PDO::FETCH_ASSOC);
+
+} catch (Exception $erro) {
+    die("Erro ao carregar fabricante: ".$erro->getMessage());
+}
+}
+
+function atualizarFabricante(PDO $conexao, string $nomeDoFabricante, int $idFabricante):void{
+    $sql = "UPDATE fabricantes SET nome = :nome WHERE id = :id ";
+
+    try {
+        $consulta = $conexao->prepare($sql);
+        $consulta->bindValue(":id", $idFabricante, PDO::PARAM_INT);
+        $consulta->bindValue(":nome", $nomeDoFabricante, PDO::PARAM_STR);
+
+        $consulta->execute();
+
+    } catch (Exception $erro) {
+        die("Erro ao atualizar fabricante: ".$erro->getMessage());
+    }
+
 }
