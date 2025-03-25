@@ -1,3 +1,11 @@
+<?php
+/* Acessando as funções de Produtos */
+require_once "../src/funcoes-produtos.php";
+
+$listaDeProdutos = listarProdutos($conexao);
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -15,6 +23,8 @@
         <hr>
         <h2>Lendo e carregando todos os produtos.</h2>
 
+
+        
         <p><a class="btn btn-primary btn-sm" href="inserir.php">Inserir novo produto</a></p>
 
 
