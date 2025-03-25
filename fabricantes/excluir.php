@@ -8,7 +8,9 @@ $fabricante = listarUmFabricante($conexao, $id);
 
 /* Verificando se escolheu "SIM" para excluir */
 if (isset($_GET['confirmar-exclusao'])) {
-    echo "Excluir o fabricante ".$id;
+    excluirFabricante($conexao, $id);
+    header("location:visualizar.php");
+    exit;
 };
 ?>
 <!DOCTYPE html>
