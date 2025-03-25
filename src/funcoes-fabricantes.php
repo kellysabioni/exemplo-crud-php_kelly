@@ -74,3 +74,4 @@ function atualizarFabricante(PDO $conexao, string $nomeDoFabricante, int $idFabr
     }
 
 }
+

@@ -35,7 +35,7 @@ $quantidade = count($listaDeFabricantes);
                 <tr>
                     <th>ID</th>
                     <th>Nome</th>
-                    <th>Operações</th>
+                    <th colspan="2">Operações</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,8 +45,12 @@ $quantidade = count($listaDeFabricantes);
                     <td> <?=$fabricante["id"]?> </td>
                     <td> <?=$fabricante["nome"]?> </td>
                     <td>
-                        <!-- Criando link dinamico -->
-                        <a href="atualizar.php?id=<?=$fabricante['id']?>">Editar</a>
+                        <!-- Criando link dinamico *EDITAR* -->
+                        <a class="btn btn-outline-dark" href="atualizar.php?id=<?=$fabricante['id']?>">Editar</a>
+                    </td>
+                    <td>
+                        <!-- Criando link dinamico *EXCLUIR* -->
+                        <a class="btn btn-outline-danger" href="excluir.php?id=<?=$fabricante['id']?>">Excluir</a>
                     </td>
                 </tr>
 

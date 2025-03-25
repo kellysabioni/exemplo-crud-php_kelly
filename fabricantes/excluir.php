@@ -1,3 +1,16 @@
+<?php
+require_once "../src/funcoes-fabricantes.php";
+/* Obtendo o valor do parâmetro via URL */
+$id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
+
+/* Chamando a função para carregar os dados de um fabricante */
+$fabricante = listarUmFabricante($conexao, $id);
+
+/* Verificando se escolheu "SIM" para excluir */
+if (isset($_GET['confirmar-exclusao'])) {
+    echo "Excluir o fabricante ".$id;
+};
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -13,9 +26,8 @@
 
     <div class="alert alert-danger w-50">
         <p> Deseja realmente excluir este fabricante?</p>
-        
         <a href="visualizar.php" class="btn btn-secondary">Não</a>
-        <a href="" class="btn btn-danger">Sim</a>        
+        <a href="?id=<?=$id?>&confirmar-exclusao" class="btn btn-danger">Sim</a>        
     </div>
 
 </div>
