@@ -11,7 +11,7 @@ function listarProdutos(PDO $conexao):array{
         produtos.preco,
         produtos.qtde,
         fabricantes.nome AS fabricante,
-        produtos.preco * produtos.qtde AS Total
+        (produtos.preco * produtos.qtde) AS Total
         FROM produtos
         JOIN fabricantes
         ON produtos.fabricante_id = fabricantes.id
@@ -31,3 +31,8 @@ function listarProdutos(PDO $conexao):array{
         die("Erro ao carregar PRODUTOS: ".$erro->getMessage());
     }
 };
+
+function inserirProduto(PDO $conexao, string $nome, float $preco, int $qtde, string $idFabricante, string $descricao):void{
+
+    
+}
