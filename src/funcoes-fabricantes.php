@@ -75,7 +75,7 @@ function atualizarFabricante(PDO $conexao, string $nomeDoFabricante, int $idFabr
 
 }
 
-function excluirFabricante($conexao, $idFabricante):void{
+function excluirFabricante(PDO $conexao, int $idFabricante):void{
     $sql = "DELETE FROM  fabricantes WHERE id = :id ";
     try {
         $consulta = $conexao->prepare($sql);
