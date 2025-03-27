@@ -1,11 +1,10 @@
 <?php
 /* Acessando as funções de Produtos */
 require_once "../src/funcoes-produtos.php";
-require_once "../src/funcoes-fabricantes.php";
+require_once "../src/funcoes-utilitarias.php";
 
 $listaDeProdutos = listarProdutos($conexao);
 
-$listaDeFabricantes = listarFabricantes($conexao);
 
 ?>
 
@@ -36,10 +35,14 @@ $listaDeFabricantes = listarFabricantes($conexao);
                 
                 <input type="hidden" name="id" value="<?=$fabricante['id']?>">
             
-                    <h3><?=$produto['nome']?></h3>
-                    <h4><?=$produto['id']?></h4>
-                    <p><b><?=$produto['preco']?></b></p>
-                    <p><b><?=$produto['qtde']?></b></p>        
+                    <h3><?=$produto['produto']?></h3>
+                    <p>Preço: <b><?=formatarPreco($produto['preco'])?></b></p>
+                    <p>Quantidade: <b><?=$produto['qtde']?></b></p>        
+                    <p>Valor Total(direto): <b><?=formatarPreco($produto['preco']*$produto['qtde'])?></b></p>
+                    <p>Valor Total(função): <b><?=calcularTotal($produto['preco'], $produto['qtde'])?></b></p>
+                    <p>Valor Total(dentro SELECT): <b><?=formatarPreco($produto['Total'])?></b></p>
+
+                    <p>Fabricante: <b><?=$produto['fabricante']?></b></p>        
                 </article>
             </div>
         
