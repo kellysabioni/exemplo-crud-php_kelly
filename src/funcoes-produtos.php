@@ -46,7 +46,7 @@ function inserirProduto(PDO $conexao, string $nome, float $preco, int $qtde, str
         $consulta->bindValue(":descricao", $descricao, PDO::PARAM_STR);
 
         $consulta-> execute();
-        
+
     } catch (\Exception $erro) {
         die("Erro ao inserir: ".$erro->getMessage());
     }
