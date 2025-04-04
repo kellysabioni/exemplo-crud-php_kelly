@@ -41,10 +41,14 @@ var_dump($produto)
                 <label class="form-label" for="fabricante">Fabricante:</label>
                 <select class="form-select" name="fabricante" id="fabricante" required>
                     <option value=""></option>
+
+        <!-- Algoritmo para seleção do fabricante do produto que será editado
+        Se a FK da tabela produtos for igual a PK da tabela fabricantes, ou seja, se o id do fabricante, então coloque o atributo "selected" no <option> correspondente -->
+
 <?php foreach ($listaDeFaricantes as $fabricante): ?>
-    <option value="<?=$fabricante['id']?>">
-        <?=$fabricante['nome']?>
-    </option>
+    <option 
+<?php if ($produto['fabricante_id'] === $fabricante['id']) echo " selected " ?>
+    value="<?=$fabricante['id']?>"><?=$fabricante['nome']?></option>
 <?php endforeach ?>                    
                 </select>
             </div>
