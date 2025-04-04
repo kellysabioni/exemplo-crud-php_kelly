@@ -5,7 +5,22 @@ require_once "../src/funcoes-fabricantes.php";
 $listaDeFaricantes = listarFabricantes($conexao);
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 $produto = listarUmProduto($conexao, $id);
+
+if (isset($_POST['atualizar'])) {
+    $id = filter_input(INPUT_POST, "id", FILTER_SANITIZE_NUMBER_INT);
+    $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
+    $preco = filter_input(INPUT_POST, "preco", FILTER_SANITIZE_NUMBER_FLOAT,  FILTER_FLAG_ALLOW_FRACTION);
+    $qtde = filter_input(INPUT_POST, "quantidade", FILTER_SANITIZE_NUMBER_INT);
+    $idFabricante = filter_input(INPUT_POST, "fabricante", FILTER_SANITIZE_NUMBER_INT);
+    $descricao = filter_input(INPUT_POST, "descricao", FILTER_SANITIZE_SPECIAL_CHARS);
+    
+    atualizarProduto($conexao, $id, $nome, $preco, $qtde, $idFabricante, $descricao);
+
+    header("location:visualizar.php");
+    exit;
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -23,6 +38,7 @@ $produto = listarUmProduto($conexao, $id);
         <hr>
 
         <form action="" method="post" class="w-50">
+        <input type="hidden" name="id" value="<?= $produto['id'] ?>">
             <div class="mb-3">
                 <label class="form-label" for="nome">Nome:</label>
                 <input value="<?=$produto['nome']?>"  class="form-control" type="text" name="nome" id="nome" required>

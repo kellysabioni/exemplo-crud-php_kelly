@@ -1,3 +1,18 @@
+<?php
+require_once "../src/funcoes-produtos.php";
+/* Obtendo o valor do parâmetro via URL */
+$id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
+
+/* Chamando a função para carregar os dados de um fabricante */
+$produto = listarUmProduto($conexao, $id);
+
+/* Verificando se escolheu "SIM" para excluir */
+if (isset($_GET['confirmar-exclusao'])) {
+    excluirProduto($conexao, $id);
+    header("location:visualizar.php");
+    exit;
+};
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -17,7 +32,7 @@
             <p> Deseja realmente excluir o produto?</p>
 
             <a href="visualizar.php" class="btn btn-secondary">Não</a>
-            <a href="" class="btn btn-danger">Sim</a>
+            <a href="?id=<?=$id?>&confirmar-exclusao" class="btn btn-danger">Sim</a>        
 
         </div>
 

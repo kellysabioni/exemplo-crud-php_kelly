@@ -44,8 +44,13 @@ $listaDeProdutos = listarProdutos($conexao);
 
                     <p>Fabricante: <b><?=$produto['fabricante']?></b></p>   
                     <p>
-                        <a class="btn btn-warning" href="atualizar.php?id=<?=$produto["id"]?>">Editar</a>
+                        <a class="btn btn-outline-dark" href="atualizar.php?id=<?=$produto["id"]?>">Editar</a> 
+                        
+                        <!-- Criando link dinamico *EXCLUIR* -->
+                        <a class="btn btn-outline-danger" href="excluir.php?id=<?=$produto['id']?>">Excluir</a>
+                    
                     </p>
+                    
                     
                 </article>
             </div>
