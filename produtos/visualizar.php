@@ -42,7 +42,11 @@ $listaDeProdutos = listarProdutos($conexao);
                     <p>Valor Total(função): <b><?=calcularTotal($produto['preco'], $produto['qtde'])?></b></p>
                     <p>Valor Total(dentro SELECT): <b><?=formatarPreco($produto['Total'])?></b></p>
 
-                    <p>Fabricante: <b><?=$produto['fabricante']?></b></p>        
+                    <p>Fabricante: <b><?=$produto['fabricante']?></b></p>   
+                    <p>
+                        <a class="btn btn-warning" href="atualizar.php?id=<?=$produto["id"]?>">Editar</a>
+                    </p>
+                    
                 </article>
             </div>
         
